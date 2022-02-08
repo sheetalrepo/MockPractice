@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<response xmlns="http://sso.message.upc.com">
+    <messageHeader correlationId="123X456">
+        <countryCode>IN</countryCode>
+        <source>SSO</source>
+        <target>ion</target>
+    </messageHeader>
+    <status>OK</status>
+    <customerId>12345</customerId>
+    <token>123-1223-1-3</token>
+    <name>
+        <firstName>Dan</firstName>
+        <lastName>W</lastName>
+    </name>
+</response>

@@ -14,9 +14,9 @@ import io.restassured.response.Response;
 
 public class B_StartServerFromCode {
 	private static final String HOST = "localhost";
-	private static final int PORT = 8080;
+	private static final int PORT = 1112;
 	private static WireMockServer server = new WireMockServer(PORT);
-
+	
 	@BeforeClass
 	public void initializeServer() {
 		System.out.println("Init");
@@ -24,7 +24,7 @@ public class B_StartServerFromCode {
 		// Start Wiremock server via code and configure it with required host and post
 		server.start();
 		WireMock.configureFor(HOST, PORT);
-
+		
 		// Now lets do req response mapping
 		// Mock-Response first
 		ResponseDefinitionBuilder mockResponse = new ResponseDefinitionBuilder();
@@ -40,8 +40,6 @@ public class B_StartServerFromCode {
 		WireMock.stubFor(WireMock.get("/emps/1").willReturn(mockResponse));
 		//WireMock.givenThat(WireMock.get("/emps/1").willReturn(mockResponse));
 	}
-
-	
 	
 	@Test
 	public void testCode() {
@@ -50,12 +48,12 @@ public class B_StartServerFromCode {
 		
 		Response response =RestAssured.
 				given().
-					get("http://localhost:8080/emps/1").
+					get(testApi).
 				then().statusCode(201).
 					extract().response();
 
 		System.out.println(); //
-		//Assert.assertEquals(response.getStatusCode(),"201");
+		Assert.assertEquals(response.getStatusCode(),201);
 		Assert.assertEquals(response.getHeader("token"),"11111");
 		Assert.assertEquals(response.getStatusLine(),"HTTP/1.1 201 Hello guys");
 		Assert.assertEquals(response.getCookie("session_id"),"91837492837");
@@ -63,8 +61,6 @@ public class B_StartServerFromCode {
 		Assert.assertEquals(response.getBody().asString(), "text to put in the body");
 	}
 	
-	
-
 	@AfterClass
 	public void closeServer() {
 		if (server.isRunning() && null != server) {

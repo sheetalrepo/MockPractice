@@ -14,31 +14,37 @@ import io.restassured.RestAssured;
 
 
 /**
- * 
  * 1. start the wiremock server:    java -jar wiremock-jre8-standalone-2.27.2.jar
- * 2. add req response mapping: \Documents\wiremock_standalone_jar\mappings
+ * 2. add req response mapping: src/test/resources/mappings
  * 3. run the test 
+ * Make sure jar file and mappings folder are in same place 
+ * because jar try to find mappings in same dir
+ * 
+ * Note:
+ * default port will be 8080
+ * java -jar wiremock-jre8-standalone-2.27.2.jar --port 1111   | to set particular free port
+ * java -jar wiremock-jre8-standalone-2.27.2.jar --port 0      | to set random free port
  * 
  * @author Sheetal_Singh
  */
 public class A_Basic {
 
 	
-	//@Test
+	@Test
 	public void testOne() {
 		RestAssured.
 			given().
-				get("http://localhost:8080/users/1").
+				get("http://localhost:1111/users/1").
 			then().
 				assertThat().
 				statusCode(200);
 	}
 
-	//@Test
+	@Test
 	public void testTwo() {
 		RestAssured.
 			given().
-				get("http://localhost:8080/users/2").
+				get("http://localhost:1111/users/2").
 			then().
 				assertThat().
 				statusCode(201);
@@ -50,7 +56,7 @@ public class A_Basic {
 		String contentType = 
 			RestAssured.
 			given().
-				get("http://localhost:8080/users/3").
+				get("http://localhost:1111/users/3").
 			then().
 				assertThat().
 				statusCode(200).

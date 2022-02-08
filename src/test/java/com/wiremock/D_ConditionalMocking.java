@@ -20,6 +20,8 @@ import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 /**
+ * Condition applied in Req Header
+ * withHeader("Accept", matching("condition")
  *
  * @author Sheetal_Singh
  *
@@ -39,18 +41,19 @@ public class D_ConditionalMocking {
 		//Response 1
 		ResponseDefinitionBuilder mockResponse1 = new ResponseDefinitionBuilder();
 		mockResponse1.withStatus(503);
-		mockResponse1.withHeader("Content-Type", "text/html");
+		mockResponse1.withHeader("Content-Type", "text/html"); //text
 		mockResponse1.withBody("Service Not Available");
 		
 		
 		//Response 2
 		ResponseDefinitionBuilder mockResponse2 = new ResponseDefinitionBuilder();
 		mockResponse2.withStatus(200);
-		mockResponse2.withHeader("Content-Type", "application/json");
+		mockResponse2.withHeader("Content-Type", "application/json"); //json
 		mockResponse2.withBody("{\"Current-Status\": \"running\"}");
 		mockResponse2.withFixedDelay(2500);
 		
 		//Same Endpoint for both response
+		//condition depends on what we sent in request header - text/plain or application/json
 		WireMock.stubFor(WireMock.get(END_POINT).withHeader("Accept", matching("text/plain")).willReturn(mockResponse1));
 		WireMock.stubFor(WireMock.get(END_POINT).withHeader("Accept", matching("application/json")).willReturn(mockResponse2));
 		
@@ -63,7 +66,10 @@ public class D_ConditionalMocking {
 	}
 
 	
-	
+	/**
+	 * Req headers is sent with value text/plain
+	 * Hence Mock response 1 will be returned
+	 */
 	//@Test
 	public void testCode1() {
 		String testApi = "http://localhost:" + PORT + END_POINT;

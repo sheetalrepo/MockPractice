@@ -13,15 +13,16 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 /**
+ * Read response from file
+ * Fetch value via Json path 
+ *    To verify jsonpath: http://jsonpath.com/
  * 
- * To verify jsonpath: http://jsonpath.com/
  * @author Sheetal_Singh
- *
  */
 public class C_ReadResponseFromFile {
 	
 	private static final String HOST = "localhost";
-	private static final int PORT = 8080;
+	private static final int PORT = 8088;
 	private static final String END_POINT = "/readfromfile/index";
 	private static WireMockServer server = new WireMockServer(PORT);
 
@@ -30,16 +31,14 @@ public class C_ReadResponseFromFile {
 		server.start();
 		WireMock.configureFor(HOST, PORT);
 
-		//filepath: src/test/resource/__files/json/index.json
+		//filepath: src/test/resource/__files/json/lordofthering.json
 		ResponseDefinitionBuilder mockResponse = new ResponseDefinitionBuilder();
 		mockResponse.withStatus(201);
-		mockResponse.withBodyFile("json/index.json");
+		mockResponse.withBodyFile("json/lordofthering.json");
 		
 		//Mocking
 		WireMock.stubFor(WireMock.get(END_POINT).willReturn(mockResponse));
 	}
-
-	
 	
 	@Test
 	public void testCode() {
@@ -53,11 +52,9 @@ public class C_ReadResponseFromFile {
 					extract().response();
 
 		Assert.assertEquals(response.jsonPath().get("glossary.title"),"Lord of the Ring");
-		Assert.assertEquals(response.jsonPath().get("glossary.GlossaryDiv.GlossList.GlossEntry.GlossDef.GlossSeeAlso[0]"),"GML");
+		Assert.assertEquals(response.jsonPath().get("glossary.GlossaryDiv.GlossList.GlossEntry.GlossDef.GlossSeeAlso[1]"),"XML");
 	}
 	
-	
-
 	@AfterClass
 	public void closeServer() {
 		if (server.isRunning() && null != server) {

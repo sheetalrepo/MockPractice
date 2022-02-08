@@ -1,0 +1,22 @@
+{
+  "glossary": {
+    "title": "Lord of the Ring",
+    "GlossaryDiv": {
+      "title": "My Title",
+      "GlossList": {
+        "GlossEntry": {
+          "ID": "ID101",
+          "Class": "SortMe",
+          "Term": "Terminology",
+          "Acronym": "Acr",
+          "Abbrev": "ISO 81879:191286",
+          "GlossDef": {
+            "paraone": "Any para",
+            "GlossSeeAlso": ["GML", "XML"]
+          },
+          "GlossSee": "markup"
+        }
+      }
+    }
+  }
+}

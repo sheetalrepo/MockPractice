@@ -15,6 +15,8 @@
 		<junit5.version>5.8.0-M1</junit5.version>
 		<testng.version>7.4.0</testng.version>
 		<restassured.version>4.3.3</restassured.version>
+		<jjwt.version>0.9.1</jjwt.version>
+		<javax.version>2.1.1</javax.version>
 	</properties>
 
 	<dependencies>
@@ -40,6 +42,21 @@
 			<version>${restassured.version}</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${javax.version}</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

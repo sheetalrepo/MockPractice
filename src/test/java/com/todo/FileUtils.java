@@ -23,7 +23,7 @@ public class FileUtils {
 	            if (is == null) {
 	                throw new IOException(String.format("Resource error [%s]", path));
 	            }
-	            return IOUtils.toString(is, Charset.defaultCharset());
+	            return IOUtils.toString(is, String.valueOf(Charset.defaultCharset()));
 	        } catch (IOException e) {
 	        	Assert.fail(e.getMessage());
 	        }

@@ -22,7 +22,7 @@ import io.restassured.response.Response;
 public class C_ReadResponseFromFile {
 	
 	private static final String HOST = "localhost";
-	private static final int PORT = 8088;
+	private static final int PORT = 8080;
 	private static final String END_POINT = "/readfromfile/index";
 	private static WireMockServer server = new WireMockServer(PORT);
 
@@ -53,6 +53,17 @@ public class C_ReadResponseFromFile {
 
 		Assert.assertEquals(response.jsonPath().get("glossary.title"),"Lord of the Ring");
 		Assert.assertEquals(response.jsonPath().get("glossary.GlossaryDiv.GlossList.GlossEntry.GlossDef.GlossSeeAlso[1]"),"XML");
+	}
+
+
+	@Test
+	public void testOne() {
+		RestAssured.
+				given().
+				get("http://localhost:8080/users/1").
+				then().
+				assertThat().
+				statusCode(200);
 	}
 	
 	@AfterClass

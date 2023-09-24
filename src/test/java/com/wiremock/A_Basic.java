@@ -34,7 +34,7 @@ public class A_Basic {
 	public void testOne() {
 		RestAssured.
 			given().
-				get("http://localhost:1111/users/1").
+				get("http://localhost:8080/users/1").
 			then().
 				assertThat().
 				statusCode(200);
@@ -56,7 +56,7 @@ public class A_Basic {
 		String contentType = 
 			RestAssured.
 			given().
-				get("http://localhost:1111/users/3").
+				get("http://localhost:8080/users/3").
 			then().
 				assertThat().
 				statusCode(200).
@@ -65,6 +65,17 @@ public class A_Basic {
 		
 		System.out.println("testResponseHeaders: "+contentType);
 		Assert.assertEquals("text/plain", contentType);	
+	}
+	
+	public static void main(String [] args) {
+		RestAssured.
+		given().
+			get("http://localhost:8080/users/1").
+		then().
+			assertThat().
+			statusCode(200);
+		
+		System.out.println("-----Pass------");
 	}
 
 }

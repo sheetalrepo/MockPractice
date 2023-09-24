@@ -70,7 +70,7 @@ public class D_ConditionalMocking {
 	 * Req headers is sent with value text/plain
 	 * Hence Mock response 1 will be returned
 	 */
-	//@Test
+	@Test
 	public void testCode1() {
 		String testApi = "http://localhost:" + PORT + END_POINT;
 		System.out.println("Service to be hit: " + testApi);
@@ -84,7 +84,7 @@ public class D_ConditionalMocking {
 	   Assert.assertEquals(r.statusCode(), HttpStatus.SC_SERVICE_UNAVAILABLE);
 	}
 	
-	//@Test
+	@Test
 	public void testCode2() {
 		String testApi = "http://localhost:" + PORT + END_POINT;
 		System.out.println("Service to be hit: " + testApi);

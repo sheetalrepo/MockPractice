@@ -14,7 +14,7 @@ import io.restassured.response.Response;
 
 public class B_StartServerFromCode {
 	private static final String HOST = "localhost";
-	private static final int PORT = 1112;
+	private static final int PORT = 8080;
 	private static WireMockServer server = new WireMockServer(PORT);
 	
 	@BeforeClass

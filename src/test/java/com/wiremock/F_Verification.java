@@ -54,9 +54,9 @@ public class F_Verification {
 		ResponseDefinitionBuilder mockResponse1 = new ResponseDefinitionBuilder();
 		mockResponse1.withStatus(201);
 		
-		WireMock.stubFor(WireMock.get(END_POINT).inScenario("To do list").whenScenarioStateIs("STARTED")
-				.willReturn(mockResponse1))
-				.willSetStateTo("");
+//		WireMock.stubFor(WireMock.get(END_POINT).inScenario("To do list").whenScenarioStateIs("STARTED")
+//				.willReturn(mockResponse1))
+//				.willSetStateTo("");
 
 		WireMock.stubFor(WireMock.get(END_POINT).inScenario("To do list").whenScenarioStateIs("STARTED")
 				.willReturn(mockResponse1));

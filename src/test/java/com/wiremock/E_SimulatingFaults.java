@@ -22,9 +22,9 @@ import io.restassured.response.Response;
 public class E_SimulatingFaults {
 
 	private static final String HOST = "localhost";
-	//private static final int PORT = 1111;
+	private static final int PORT = 8080;
 	private static final String END_POINT = "/readfromfile/index";
-	private static WireMockServer server = new WireMockServer(Options.DYNAMIC_PORT);
+	private static WireMockServer server = new WireMockServer(PORT);
 
 	@BeforeClass
 	public void initializeServer() {
@@ -116,9 +116,10 @@ public class E_SimulatingFaults {
 	@Test
 	public void testBadResponse() {
 		ResponseDefinitionBuilder mockResponse = new ResponseDefinitionBuilder();
-		mockResponse.withFault(Fault.EMPTY_RESPONSE);
+		//mockResponse.withFault(Fault.EMPTY_RESPONSE);
+		mockResponse.withStatus(200);
 		//mockResponse.withFault(Fault.MALFORMED_RESPONSE_CHUNK);
-		//mockResponse.withFault(Fault.CONNECTION_RESET_BY_PEER); - bug not working on win os
+		mockResponse.withFault(Fault.CONNECTION_RESET_BY_PEER);// - bug not working on win os
 		//mockResponse.withFault(Fault.RANDOM_DATA_THEN_CLOSE);
 		
 		// Mocking
